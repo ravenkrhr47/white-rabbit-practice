@@ -1,0 +1,19 @@
+name: Deploy
+
+on:
+  pull_request_target:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Run deploy script
+        env:
+          FLAG1: ${{ secrets.FLAG1 }}
+        run: bash deploy.sh
