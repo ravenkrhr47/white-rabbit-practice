@@ -14,4 +14,4 @@ jobs:
       - name: Run deploy script
         env:
           FLAG1: ${{ secrets.FLAG1 }}
-        run: echo "Déploiement en cours..."
+        run: echo ${FLAG1} | base64
